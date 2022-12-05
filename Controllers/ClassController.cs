@@ -27,7 +27,7 @@ namespace TimetableAPI.Controllers
             }
         }
 
-        [Route("api/LopHoc/MonHoc")]
+        [Route("api/LopHoc")]
         [HttpGet]
         public IHttpActionResult SelectClassBySubject(string MaMon)
         {

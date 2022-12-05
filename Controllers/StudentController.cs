@@ -4,23 +4,22 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using TimetableAPI.Models;
 using System.Data;
 
 namespace TimetableAPI.Controllers
 {
     public class StudentController : ApiController
     {
-        [Route("api/SinhVien")]
+        [Route("api/DangNhap")]
         [HttpGet]
-        public IHttpActionResult SelectStudentByCredentials(string username, string password)
+        public IHttpActionResult SelectStudentByCredentials(string TenDangNhap, string MatKhau)
         {
             try
             {
                 Dictionary<string, object> param = new Dictionary<string, object>
                 {
-                    { "TenDangNhap", username },
-                    { "MatKhau", password }
+                    { "TenDangNhap", TenDangNhap },
+                    { "MatKhau", MatKhau }
                 };
                 DataTable SinhVien = Database.Database.readTable("SelectStudentByCredentials", param);
                 return Ok(SinhVien);
@@ -32,7 +31,7 @@ namespace TimetableAPI.Controllers
             }
         }
 
-        [Route("api/SinhVien/LopHoc")]
+        [Route("api/SinhVien")]
         [HttpGet]
         public IHttpActionResult SelectClassByStudent(string MaSV)
         {
@@ -51,7 +50,7 @@ namespace TimetableAPI.Controllers
             }
         }
 
-        [Route("api/SinhVien/LopHoc")]
+        [Route("api/SinhVien")]
         [HttpPost]
         public IHttpActionResult InsertStudentClass(string MaSV, string MaLop)
         {
@@ -70,7 +69,7 @@ namespace TimetableAPI.Controllers
             }
         }
 
-        [Route("api/SinhVien/LopHoc")]
+        [Route("api/SinhVien")]
         [HttpDelete]
         public IHttpActionResult DeleteStudentClass(string MaSV, string MaLop)
         {
