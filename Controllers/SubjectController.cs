@@ -67,7 +67,7 @@ namespace TimetableAPI.Controllers
             }
         }
 
-        [Route("api/LopHoc")]
+        [Route("api/MonHoc")]
         [HttpDelete]
         public IHttpActionResult DeleteSubject(string MaMon)
         {

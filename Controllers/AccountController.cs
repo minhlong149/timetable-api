@@ -55,7 +55,7 @@ namespace TimetableAPI.Controllers
         }
 
         [Route("api/TaiKhoan")]
-        [HttpPost]
+        [HttpPut]
         public IHttpActionResult UpdateCredentials(SinhVien sinhVien)
         {
             try
@@ -76,7 +76,7 @@ namespace TimetableAPI.Controllers
         }
 
         [Route("api/TaiKhoan")]
-        [HttpPost]
+        [HttpDelete]
         public IHttpActionResult DeleteCredentials(string MaSV)
         {
             try
