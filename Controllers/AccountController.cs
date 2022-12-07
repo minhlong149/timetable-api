@@ -53,5 +53,44 @@ namespace TimetableAPI.Controllers
                 return NotFound();
             }
         }
+
+        [Route("api/TaiKhoan")]
+        [HttpPost]
+        public IHttpActionResult UpdateCredentials(SinhVien sinhVien)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>
+                {
+                   { "MaSV", sinhVien.MaSV },
+                   { "TenSV", sinhVien.TenSV },
+                   { "TenDangNhap", sinhVien.TenDangNhap },
+                   { "MatKhau", sinhVien.MatKhau },
+                };
+                return Ok(Database.Database.ExecCommand("UpdateCredentials", param));
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [Route("api/TaiKhoan")]
+        [HttpPost]
+        public IHttpActionResult DeleteCredentials(string MaSV)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>
+                {
+                   { "MaSV", MaSV }
+                };
+                return Ok(Database.Database.ExecCommand("DeleteCredentials", param));
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
     }
 }
