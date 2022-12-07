@@ -10,27 +10,6 @@ namespace TimetableAPI.Controllers
 {
     public class StudentController : ApiController
     {
-        [Route("api/DangNhap")]
-        [HttpGet]
-        public IHttpActionResult SelectStudentByCredentials(string TenDangNhap, string MatKhau)
-        {
-            try
-            {
-                Dictionary<string, object> param = new Dictionary<string, object>
-                {
-                    { "TenDangNhap", TenDangNhap },
-                    { "MatKhau", MatKhau }
-                };
-                DataTable SinhVien = Database.Database.readTable("SelectStudentByCredentials", param);
-                return Ok(SinhVien);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return NotFound();
-            }
-        }
-
         [Route("api/SinhVien")]
         [HttpGet]
         public IHttpActionResult SelectClassByStudent(string MaSV)
@@ -41,7 +20,7 @@ namespace TimetableAPI.Controllers
                 {
                     { "MaSV", MaSV },
                 };
-                    DataTable SinhVien = Database.Database.readTable("SelectClassByStudent", param);
+                    DataTable SinhVien = Database.Database.readTable("SelectStudentClass", param);
                     return Ok(SinhVien);
             }
             catch
