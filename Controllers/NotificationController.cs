@@ -12,6 +12,22 @@ namespace TimetableAPI.Controllers
     {
         [Route("api/Notification")]
         [HttpGet]
+        public IHttpActionResult SelectAllNotification()
+        {
+            try
+            {
+                DataTable ThongBao = Database.Database.readTable("SelectAllNotification");
+                return Ok(ThongBao);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return NotFound();
+            }
+        }
+
+        [Route("api/Notification")]
+        [HttpGet]
         public IHttpActionResult SelectNotificationByStudent(string MaSV)
         {
             try
@@ -61,6 +77,25 @@ namespace TimetableAPI.Controllers
                     { "ID", ID }
                 };
                 return Ok(Database.Database.ExecCommand("DeleteNotificationByID", param));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return NotFound();
+            }
+        }
+
+        [Route("api/Notification")]
+        [HttpDelete]
+        public IHttpActionResult DeleteNotificationByStudent(string MaSV)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>
+                {
+                    { "MaSV", MaSV }
+                };
+                return Ok(Database.Database.ExecCommand("DeleteNotificationByStudent", param));
             }
             catch (Exception ex)
             {

@@ -29,8 +29,8 @@ namespace TimetableAPI.Controllers
                     StoredProcedureName = "SelectHomeWorkByStudentClass";
                 }
 
-                DataTable ThongBao = Database.Database.readTable(StoredProcedureName, param);
-                return Ok(ThongBao);
+                DataTable BaiTap = Database.Database.readTable(StoredProcedureName, param);
+                return Ok(BaiTap);
             }
             catch (Exception ex)
             {
@@ -62,15 +62,24 @@ namespace TimetableAPI.Controllers
 
         [Route("api/Homework")]
         [HttpPut]
-        public IHttpActionResult UpdateHomeWorkStatusByID(int ID)
+        public IHttpActionResult UpdateHomeWorkByID(int ID, string NoiDung = null)
         {
             try
             {
+                string StoredProcedureName = "UpdateHomeWorkStatusByID";
+
                 Dictionary<string, object> param = new Dictionary<string, object>
                 {
                     { "ID", ID }
                 };
-                return Ok(Database.Database.ExecCommand("UpdateHomeWorkStatusByID", param));
+
+                if (NoiDung != null)
+                {
+                    param.Add("NoiDung", NoiDung);
+                    StoredProcedureName = "UpdateHomeWorkContentByID";
+                }
+
+                return Ok(Database.Database.ExecCommand(StoredProcedureName, param));
             }
             catch (Exception ex)
             {
