@@ -70,6 +70,28 @@ namespace TimetableAPI.Controllers
         }
 
         [Route("api/LopHoc")]
+        [HttpPut]
+        public IHttpActionResult UpdateClass(LopHoc lopHoc)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>
+                {
+                    { "MaLop", lopHoc.MaLop },
+                    { "Thu", lopHoc.Thu },
+                    { "Tiet", lopHoc.Tiet },
+                    { "GiaoVien", lopHoc.GiaoVien },
+                    { "PhongHoc", lopHoc.PhongHoc }
+                };
+                return Ok(Database.Database.ExecCommand("InsertClass", param));
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [Route("api/LopHoc")]
         [HttpDelete]
         public IHttpActionResult DeleteClass(string maLop)
         {
