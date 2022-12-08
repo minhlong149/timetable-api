@@ -48,12 +48,13 @@ namespace TimetableAPI.Controllers
 
         [Route("api/Notification")]
         [HttpPost]
-        public IHttpActionResult InsertNotification(string NoiDung, string MaSV = null)
+        public IHttpActionResult InsertNotification(string NoiDung, string TieuDe = null, string MaSV = null)
         {
             try
             {
                 Dictionary<string, object> param = new Dictionary<string, object>
                 {
+                    { "TieuDe", TieuDe },
                     { "NoiDung", NoiDung },
                     { "MaSV", MaSV }
                 };

@@ -48,6 +48,25 @@ namespace TimetableAPI.Controllers
         }
 
         [Route("api/LopHoc")]
+        [HttpGet]
+        public IHttpActionResult SelectClassByStudent(string MaSV)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>
+                {
+                    { "MaSV", MaSV },
+                };
+                DataTable SinhVien = Database.Database.readTable("SelectClassByStudent", param);
+                return Ok(SinhVien);
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
+
+        [Route("api/LopHoc")]
         [HttpPost]
         public IHttpActionResult InsertClass(LopHoc lopHoc)
         {

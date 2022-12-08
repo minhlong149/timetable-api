@@ -12,15 +12,15 @@ namespace TimetableAPI.Controllers
     {
         [Route("api/SinhVien")]
         [HttpGet]
-        public IHttpActionResult SelectClassByStudent(string MaSV)
+        public IHttpActionResult SelectStudentByClass(string MaLop)
         {
             try
             {
                 Dictionary<string, object> param = new Dictionary<string, object>
                 {
-                    { "MaSV", MaSV },
+                    { "MaLop", MaLop },
                 };
-                    DataTable SinhVien = Database.Database.readTable("SelectStudentClass", param);
+                    DataTable SinhVien = Database.Database.readTable("SelectStudentByClass", param);
                     return Ok(SinhVien);
             }
             catch
