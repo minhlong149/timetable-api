@@ -172,6 +172,7 @@
     <Compile Include="Models\LopHoc.cs" />
     <Compile Include="Models\MonHoc.cs" />
     <Compile Include="Models\SinhVien.cs" />
+    <Compile Include="Models\ThongBao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

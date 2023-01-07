@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Data;
+using TimetableAPI.Models;
 
 namespace TimetableAPI.Controllers
 {
@@ -48,15 +49,16 @@ namespace TimetableAPI.Controllers
 
         [Route("api/Notification")]
         [HttpPost]
-        public IHttpActionResult InsertNotification(string NoiDung, string TieuDe = null, string MaSV = null)
+        public IHttpActionResult InsertNotification(ThongBao thongbao)
         {
             try
             {
                 Dictionary<string, object> param = new Dictionary<string, object>
                 {
-                    { "TieuDe", TieuDe },
-                    { "NoiDung", NoiDung },
-                    { "MaSV", MaSV }
+                    { "MaSV", thongbao.MaSV },
+                    { "TieuDe", thongbao.TieuDe },
+                    { "NoiDung", thongbao.NoiDung },
+                    { "ThoiGian", thongbao.ThoiGian },
                 };
                 return Ok(Database.Database.ExecCommand("InsertNotification", param));
             }
