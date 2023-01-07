@@ -13,24 +13,38 @@ namespace TimetableAPI.Controllers
     {
         [Route("api/Homework")]
         [HttpGet]
-        public IHttpActionResult SelectHomeWorkByStudent(string MaSV, string MaLop = null)
+        public IHttpActionResult SelectHomeWorkByStudent(string MaSV)
         {
             try
             {
-                string StoredProcedureName = "SelectHomeWorkByStudent";
-
                 Dictionary<string, object> param = new Dictionary<string, object>
                 {
                     { "MaSV", MaSV }
                 };
 
-                if (MaLop != null)
-                {
-                    param.Add("MaLop", MaLop);
-                    StoredProcedureName = "SelectHomeWorkByStudentClass";
-                }
+                DataTable BaiTap = Database.Database.readTable("SelectHomeWorkByStudent", param);
+                return Ok(BaiTap);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return NotFound();
+            }
+        }
 
-                DataTable BaiTap = Database.Database.readTable(StoredProcedureName, param);
+        [Route("api/Homework")]
+        [HttpGet]
+        public IHttpActionResult SelectHomeWorkByStudentClass(string MaSV, string MaLop)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>
+                {
+                    { "MaSV", MaSV },
+                    { "MaLop", MaLop }
+                };
+
+                DataTable BaiTap = Database.Database.readTable("SelectHomeWorkByStudentClass", param);
                 return Ok(BaiTap);
             }
             catch (Exception ex)
@@ -65,24 +79,39 @@ namespace TimetableAPI.Controllers
 
         [Route("api/Homework")]
         [HttpPut]
-        public IHttpActionResult UpdateHomeWorkByID(int ID, string NoiDung = null)
+        public IHttpActionResult UpdateHomeWorkByID(int ID)
         {
             try
             {
-                string StoredProcedureName = "UpdateHomeWorkStatusByID";
-
                 Dictionary<string, object> param = new Dictionary<string, object>
                 {
                     { "ID", ID }
                 };
 
-                if (NoiDung != null)
-                {
-                    param.Add("NoiDung", NoiDung);
-                    StoredProcedureName = "UpdateHomeWorkContentByID";
-                }
+                return Ok(Database.Database.ExecCommand("UpdateHomeWorkStatusByID", param));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return NotFound();
+            }
+        }
 
-                return Ok(Database.Database.ExecCommand(StoredProcedureName, param));
+        [Route("api/Homework")]
+        [HttpPut]
+        public IHttpActionResult UpdateHomeWorkContentByID(BaiTap baitap)
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>
+                {
+                    { "ID", baitap.ID },
+                    { "TieuDe", baitap.TieuDe },
+                    { "NoiDung", baitap.NoiDung },
+                    { "ThoiGian ", baitap.ThoiGian  },
+                };
+
+                return Ok(Database.Database.ExecCommand("UpdateHomeWorkContentByID", param));
             }
             catch (Exception ex)
             {
