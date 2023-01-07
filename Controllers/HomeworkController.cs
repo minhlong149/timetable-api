@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Data;
+using TimetableAPI.Models;
 
 namespace TimetableAPI.Controllers
 {
@@ -41,15 +42,17 @@ namespace TimetableAPI.Controllers
 
         [Route("api/Homework")]
         [HttpPost]
-        public IHttpActionResult InsertHomeWork(string MaSV, string MaLop, string NoiDung)
+        public IHttpActionResult InsertHomeWork(BaiTap baitap)
         {
             try
             {
                 Dictionary<string, object> param = new Dictionary<string, object>
                 {
-                    { "MaSV", MaSV },
-                    { "MaLop", MaLop },
-                    { "NoiDung", NoiDung }
+                    { "MaSV", baitap.MaSV },
+                    { "MaLop", baitap.MaLop },
+                    { "TieuDe", baitap.TieuDe },
+                    { "NoiDung", baitap.NoiDung },
+                    { "ThoiGian ", baitap.ThoiGian  },
                 };
                 return Ok(Database.Database.ExecCommand("InsertHomeWork", param));
             }

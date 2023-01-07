@@ -169,6 +169,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BaiTap.cs" />
     <Compile Include="Models\LopHoc.cs" />
     <Compile Include="Models\MonHoc.cs" />
     <Compile Include="Models\SinhVien.cs" />
