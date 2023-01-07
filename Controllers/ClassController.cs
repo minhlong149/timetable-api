@@ -77,6 +77,8 @@ namespace TimetableAPI.Controllers
                     { "MaMon", lopHoc.MaMon },
                     { "Thu", lopHoc.Thu },
                     { "Tiet", lopHoc.Tiet },
+                    { "NgayBD", lopHoc.NgayBD },
+                    { "NgayKT", lopHoc.NgayKT },
                     { "GiaoVien", lopHoc.GiaoVien },
                     { "PhongHoc", lopHoc.PhongHoc }
                 };
@@ -99,6 +101,8 @@ namespace TimetableAPI.Controllers
                     { "MaLop", lopHoc.MaLop },
                     { "Thu", lopHoc.Thu },
                     { "Tiet", lopHoc.Tiet },
+                    { "NgayBD", lopHoc.NgayBD },
+                    { "NgayKT", lopHoc.NgayKT },
                     { "GiaoVien", lopHoc.GiaoVien },
                     { "PhongHoc", lopHoc.PhongHoc }
                 };
