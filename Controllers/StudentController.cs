@@ -12,7 +12,7 @@ namespace TimetableAPI.Controllers
     {
         [Route("api/SinhVien")]
         [HttpGet]
-        public IHttpActionResult SelectStudentByClass(string MaLop)
+        public IHttpActionResult SelectStudentByClass(string MaLop, bool ChuaDangKy = false)
         {
             try
             {
@@ -20,8 +20,9 @@ namespace TimetableAPI.Controllers
                 {
                     { "MaLop", MaLop },
                 };
-                    DataTable SinhVien = Database.Database.readTable("SelectStudentByClass", param);
-                    return Ok(SinhVien);
+
+                string StoredProcedureName = ChuaDangKy ? "SelectStudentCanRegisterClass" : "SelectStudentByClass";
+                return Ok(Database.Database.readTable(StoredProcedureName, param));
             }
             catch
             {
