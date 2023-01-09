@@ -106,7 +106,7 @@ namespace TimetableAPI.Controllers
                     { "GiaoVien", lopHoc.GiaoVien },
                     { "PhongHoc", lopHoc.PhongHoc }
                 };
-                return Ok(Database.Database.ExecCommand("InsertClass", param));
+                return Ok(Database.Database.ExecCommand("UpdateClass", param));
             }
             catch
             {
